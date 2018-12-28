@@ -17,7 +17,7 @@ debug debug-test: LD_FLAGS = -pthread
 
 OBJ_DIR = obj
 
-BIN_NAME = shallowblue
+BIN_NAME = shallowblue_neweval
 TEST_BIN_NAME = shallowbluetest
 
 all: $(OBJ_DIR) $(BIN_NAME)

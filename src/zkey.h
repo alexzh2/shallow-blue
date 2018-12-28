@@ -89,6 +89,8 @@ class ZKey {
    */
   void updateCastlingRights(bool, bool, bool, bool);
 
+  void setFromPawnStructure(const Board&);
+
   /**
    * @brief Compare Zobrist keys 
    * 

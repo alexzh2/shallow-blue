@@ -200,6 +200,8 @@ class Board {
    */
   ZKey getZKey() const;
 
+  ZKey getPawnStructureZKey() const;
+
   /**
    * @brief Returns the Piece Square Table of this board for its current state.
    *
@@ -290,6 +292,9 @@ class Board {
    * @brief Zobrist key for this board in its current state.
    */
   ZKey _zKey;
+
+  ZKey _pawnStructureZkey;
+ private:
 
   /**
    * @brief Piece Square table for this board in its current state.

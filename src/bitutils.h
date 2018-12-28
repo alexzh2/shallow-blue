@@ -19,6 +19,12 @@ inline int _popLsb(U64 &board) {
   return lsbIndex;
 }
 
+inline int _popMsb(U64 &board) {
+  int msbIndex = 63 - __builtin_clzll(board);
+  board &= ~(ONE << msbIndex);
+  return msbIndex;
+}
+
 /**
  * @brief Returns the number of set bits in the given value.
  *

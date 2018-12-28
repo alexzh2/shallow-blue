@@ -112,4 +112,8 @@ enum SquareIndex {
   a8, b8, c8, d8, e8, f8, g8, h8
 };
 
+enum GamePhase {
+  OPENING,
+  ENDGAME
+};
 #endif

@@ -3,7 +3,6 @@
 #include "attacks.h"
 #include <sstream>
 #include <iostream>
-#include <stdexcept>
 
 Board::Board() {
   setToFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -75,6 +74,10 @@ Color Board::getInactivePlayer() const {
 
 ZKey Board::getZKey() const {
   return _zKey;
+}
+
+ZKey Board::getPawnStructureZKey() const {
+  return _pawnStructureZkey;
 }
 
 PSquareTable Board::getPSquareTable() const {
@@ -288,6 +291,8 @@ void Board::setToFen(std::string fenString) {
 
   _updateNonPieceBitBoards();
   _zKey = ZKey(*this);
+  _pawnStructureZkey.setFromPawnStructure(*this);
+
   _pst = PSquareTable(*this);
 }
 
@@ -448,6 +453,11 @@ void Board::doMove(Move move) {
     _halfmoveClock = 0;
   } else {
     _halfmoveClock++;
+  }
+
+  // Update pawn structure ZKey if this is a pawn move
+  if (move.getPieceType() == PAWN) {
+    _pawnStructureZkey.movePiece(_activePlayer, PAWN, move.getFrom(), move.getTo());
   }
 
   _updateCastlingRightsForMove(move);
